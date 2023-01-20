@@ -2419,7 +2419,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 
 .navbar .navbar-nav .nav-link {
   text-transform: uppercase;
-  font-size: 0.7142em;
+  font-size: 1.142em;
   padding: 0.5rem 0.7rem;
   line-height: 1.625rem;
   margin-right: 3px;
@@ -3903,7 +3903,7 @@ Created using IcoMoon - icomoon.io
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 0.7142em;
+  font-size: 1.142em;
   padding: 10px 8px;
   line-height: 1.625rem;
 }

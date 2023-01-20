@@ -11,6 +11,7 @@ declare var window: any;
 export class PendingPaymentComponent implements OnInit {
 studentList:any[]=[];
 formModal: any;
+today=new Date().toLocaleDateString()
 currentCustomer:any
   constructor(private candidateService:CandidateService) { }
 
@@ -38,9 +39,14 @@ currentCustomer:any
 
 changedStatus(value){
   console.log("updated status is",value)
-  this.candidateService.updateCustomerStatus(this.currentCustomer.id,value)
+  this.candidateService.updateCustomerStatus(this.currentCustomer.id,value).subscribe(res=>{
+    console.log(res)
+  })
+  this.formModal.hide()
 }
-
+selectedWeek(data){
+  console.log("selectd week is",data)
+}
 
   exportDetails(){
     console.log("export Deatils")

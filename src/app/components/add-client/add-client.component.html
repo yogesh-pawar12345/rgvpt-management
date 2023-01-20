@@ -1,67 +1,95 @@
-<p>add-client works!</p>
-
-<div class="panel-header panel-header-sm">
-</div>
+<div class="panel-header panel-header-sm"></div>
 <div class="main-content">
   <div class="row">
     <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Add Profile</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <h5 class="title">Main Contact</h5>
+            <input
+              type="hidden"
+              formControlName="clientId"
+              class="form-control"
+            />
 
-        <div class="card">
-          <div class="card-header">
-            <h5 class="title">Add Profile</h5>
-          </div>
-          <div class="card-body">
-            <form [formGroup]="form">
-              <h5 class="title">Main Contact</h5>
-              <input type="hidden" formControlName="clientId" class="form-control" >
-
-              <div class="row">
-                <div class="col-md-4 pr-1">
-                  <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" formControlName="name" class="form-control" placeholder="Enter Name" >
-                    <small  class="form-text text-muted text-danger" *ngIf="hasError('name', 'required')">* User Name is Required </small>
-
-                  </div>
-                </div>
-                <div class="col-md-4 px-1">
-                  <div class="form-group">
-                    <label>Primary Phone Number</label>
-                    <input type="text" formControlName="primaryPhoneNumber" class="form-control" placeholder="Username" >
-                    <small  class="form-text text-muted text-danger" *ngIf="hasError('primaryPhoneNumber', 'required')">* Phone Number is Required </small>
-
-                  </div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="name">Secondary Phone Number</label>
-                    <input name="secondaryPhoneNumber" id="email" formControlName="secondaryPhoneNumber" type="text" class="form-control" placeholder="Secondary Phone Number">
-                  </div>
+            <div class="row d-flex justify-content-between">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label> Full Name</label>
+                  <input
+                    type="text"
+                    formControlName="fullName"
+                    class="form-control"
+                    placeholder="Enter Your Name"
+                  />
+                  <small
+                    class="form-text text-muted text-danger"
+                    *ngIf="hasError('fullName', 'required')"
+                    >* User Name is Required
+                  </small>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6 pr-1">
-                  <div class="form-group">
-                    <label>Relationship</label>
-                    <select class="form-select select-class" formControlName="relationship" required>
-                      <option value="" selected disabled >----Select Relationship----</option>
-                      <option  value="Father">Father</option>
-                      <option value="Mother">Mother</option>
-                      <option value="Other">Other</option>
-                    </select>
-
-                    <!-- <input type="text" class="form-control" formControlName="mainRelationship" placeholder="Company" value="Mike"> -->
-                    <small  class="form-text text-muted text-danger" *ngIf="hasError('relationship', 'required')">* Relationship is Required </small>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                  </div>
+              <div class="col-md-5 pr-1 my-2">
+                <div class="form-group">
+                  <label>Primary Phone Number</label>
+                  <input
+                    type="text"
+                    formControlName="primaryPhoneNumber"
+                    class="form-control"
+                    placeholder="Username"
+                  />
+                  <small
+                    class="form-text text-muted text-danger"
+                    *ngIf="hasError('primaryPhoneNumber', 'required')"
+                    >* Phone Number is Required
+                  </small>
                 </div>
               </div>
-              <!-- <hr>
+            </div>
+            <div class="row d-flex justify-content-between">
+              <div class="col-md-5 pl-1">
+                <div class="form-group">
+                  <label for="name">Secondary Phone Number</label>
+                  <input
+                    name="secondaryPhoneNumber"
+                    id="email"
+                    formControlName="secondaryPhoneNumber"
+                    type="text"
+                    class="form-control"
+                    placeholder="Secondary Phone Number"
+                  />
+                </div>
+              </div>
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Relationship</label>
+                  <select
+                    class="form-select select-class"
+                    formControlName="relationship"
+                    required
+                  >
+                    <option value="" selected disabled>
+                      ----Select Relationship----
+                    </option>
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Other">Other</option>
+                  </select>
+
+                  <!-- <input type="text" class="form-control" formControlName="mainRelationship" placeholder="Company" value="Mike"> -->
+                  <small
+                    class="form-text text-muted text-danger"
+                    *ngIf="hasError('relationship', 'required')"
+                    >* Relationship is Required
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- <hr>
               <h5 class="title">Secondary  Contact</h5>
               <div class="row">
                 <div class="col-md-4 pr-1">
@@ -83,7 +111,7 @@
                   </div>
                 </div>
               </div> -->
-              <!-- <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Relationship</label>
@@ -97,25 +125,42 @@
                   </div>
                 </div>
               </div> -->
-              <hr>
-              <div formArrayName="childrens">
-                <h5 class="title">Student Details</h5>
-                <div class="border border-dark my-2 py-2" *ngFor="let child of childrens().controls; let childIndex=index"  [formGroupName]="childIndex">
-                  <div class="row d-flex justify-content-evenly w-100">
-                    <div class="col-5 p-1">
-                      <div class="form-group">
-                        <label>Student Name</label>
-                        <input type="text" formControlName="name" class="form-control"placeholder="Full Name" >
-                      </div>
+            <hr />
+            <div formArrayName="childrens">
+              <h5 class="title">Student Details</h5>
+              <div
+                class="border border-dark my-2 py-2"
+                *ngFor="
+                  let child of childrens().controls;
+                  let childIndex = index
+                "
+                [formGroupName]="childIndex"
+              >
+                <div class="row d-flex justify-content-evenly w-100">
+                  <div class="col-5 p-1">
+                    <div class="form-group">
+                      <label>Student Name</label>
+                      <input
+                        type="text"
+                        formControlName="name"
+                        class="form-control"
+                        placeholder="Full Name"
+                      />
                     </div>
-                    <div class="col-5 p-1">
-                      <div class="form-group">
-                        <label>Date Of Birth</label>
-                        <input type="date" formControlName="dob" class="form-control" placeholder="Username" >
-                      </div>
-                      <!-- <label>Date Of Birth</label>
+                  </div>
+                  <div class="col-5 p-1">
+                    <div class="form-group">
+                      <label>Date Of Birth</label>
+                      <input
+                        type="date"
+                        formControlName="dob"
+                        class="form-control"
+                        placeholder="Username"
+                      />
+                    </div>
+                    <!-- <label>Date Of Birth</label>
                       <input type="date"> -->
-                      <!-- <div class="input-group">
+                    <!-- <div class="input-group">
 
                         <input class="form-control" placeholder="yyyy-mm-dd"
                         formControlName="dob" required
@@ -128,74 +173,129 @@
                         <small  class="form-text text-muted text-danger" *ngIf="hasError('dob', 'required')">* DOB is Required </small>
 
                       </div> -->
-                    </div>
-
-                  </div>
-                  <div class="row d-flex justify-content-evenly w-100">
-                    <div class="col-5 p-1">
-                      <div class="form-group">
-                        <label>School Name</label>
-                        <input type="text" formControlName="schoolName" class="form-control"placeholder="Full Name" >
-                      </div>
-                    </div>
-                    <div class="col-5 p-1">
-                      <label>Child Cost Type</label>
-                      <div class="form-group">
-                       <div class="row">
-                        <div class="col-3">
-                          <input class="form-check-input" id="exampleRadios1" (change)="selectedChildCostType()" type="radio" formControlName="childCostType" value="full" name="costType{{childIndex}}">
-                          <label class="form-check-label mx-2" for="flexRadioDefault1">Full</label>
-                        </div>
-                        <div class="col-4">
-                          <input class="form-check-input "id="exampleRadios2" (change)="selectedChildCostType()" type="radio" formControlName="childCostType"  value="return" name="costType{{childIndex}}"  >
-                          <label class="form-check-label mx-2" for="flexRadioDefault2"> Return</label>
-                        </div>
-                        <div class="col-5">
-                          <input class="form-check-input" id="exampleRadios3" (change)="selectedChildCostType()" type="radio" formControlName="childCostType" value="midDay" name="costType{{childIndex}}"  >
-                          <label class="form-check-label mx-2" > Mid Day</label>
-                        </div>
-                       </div>
-                        <!-- <input type="text" formControlName="childCostType" class="form-control" placeholder="Username" > -->
-
-
-
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row col-12 d-flex justify-content-center align-items-center text-center">
-                    <button  (click)="deleteChild(childIndex)" type="button" class="btn btn-warning form-btn">Delete Child</button>
-
                   </div>
                 </div>
+                <div class="row d-flex justify-content-evenly w-100">
+                  <div class="col-5 p-1">
+                    <div class="form-group">
+                      <label>School Name</label>
+                      <input
+                        type="text"
+                        formControlName="schoolName"
+                        class="form-control"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-5 p-1">
+                    <label>Child Cost Type</label>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-3">
+                          <input
+                            class="form-check-input"
+                            id="exampleRadios1"
+                            (change)="selectedChildCostType()"
+                            type="radio"
+                            formControlName="childCostType"
+                            value="full"
+                            name="costType{{ childIndex }}"
+                          />
+                          <label
+                            class="form-check-label mx-2"
+                            for="flexRadioDefault1"
+                            >Full</label
+                          >
+                        </div>
+                        <div class="col-4">
+                          <input
+                            class="form-check-input"
+                            id="exampleRadios2"
+                            (change)="selectedChildCostType()"
+                            type="radio"
+                            formControlName="childCostType"
+                            value="return"
+                            name="costType{{ childIndex }}"
+                          />
+                          <label
+                            class="form-check-label mx-2"
+                            for="flexRadioDefault2"
+                          >
+                            Return</label
+                          >
+                        </div>
+                        <div class="col-5">
+                          <input
+                            class="form-check-input"
+                            id="exampleRadios3"
+                            (change)="selectedChildCostType()"
+                            type="radio"
+                            formControlName="childCostType"
+                            value="midDay"
+                            name="costType{{ childIndex }}"
+                          />
+                          <label class="form-check-label mx-2"> Mid Day</label>
+                        </div>
+                      </div>
+                      <!-- <input type="text" formControlName="childCostType" class="form-control" placeholder="Username" > -->
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row col-12 d-flex justify-content-center align-items-center text-center"
+                >
+                  <button
+                    (click)="deleteChild(childIndex)"
+                    type="button"
+                    class="btn btn-warning form-btn"
+                  >
+                    Delete Child
+                  </button>
+                </div>
               </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button  (click)="addNewChild()" type="button" class="btn btn-primary mx-1">Add Child</button>
-                <button (click)="submitForm()" type="button" class="btn btn-success mx-1">Submit Form</button>
-              </div>
-
-            </form>
-          </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <button
+                (click)="addNewChild()"
+                type="button"
+                class="btn btn-primary mx-1"
+              >
+                Add Child
+              </button>
+              <button
+                (click)="submitForm()"
+                type="button"
+                class="btn btn-success mx-1"
+              >
+                Submit Form
+              </button>
+            </div>
+          </form>
         </div>
-
-
+      </div>
     </div>
     <div class="col-md-4">
       <div class="card card-user">
         <div class="card-body">
-          <div class="d-flex flex-column justify-content-center align-items-center">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
             <!-- <h3>Total Payable Amount</h3>
            <h3>{{Amount}} RS</h3> -->
           </div>
           <div class="row">
-            <div class="col-xl-12 ">
+            <div class="col-xl-12">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Payable Amount</h5>
-                  <span class="h2 font-weight-bold mb-0">{{Amount}} Rs</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">
+                    Total Payable Amount
+                  </h5>
+                  <span class="h2 font-weight-bold mb-0">{{ Amount }} Rs</span>
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                  <div
+                    class="icon icon-shape bg-danger text-white rounded-circle shadow"
+                  >
                     <i class="fas fa-chart-bar"></i>
                   </div>
                 </div>
@@ -207,4 +307,3 @@
     </div>
   </div>
 </div>
-

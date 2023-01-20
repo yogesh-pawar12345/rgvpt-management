@@ -25,6 +25,6 @@ paymentAmount$=this.paymentAmount.asObservable();
   }
   updateCustomerStatus(customer,status){
     console.log("inside service",customer,status)
-    return ([])
+    return of([])
   }
 }

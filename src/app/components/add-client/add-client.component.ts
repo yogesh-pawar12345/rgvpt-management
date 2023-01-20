@@ -15,7 +15,7 @@ Amount=0
   createControls(){
     this.form = this.fb.group({
       clientId:[new Date().getTime().toString()],
-      name: ["",[Validators.required]],
+      fullName: ["",[Validators.required]],
       primaryPhoneNumber:[""],
       secondaryPhoneNumber:[""],
       relationship:[""],
