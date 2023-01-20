@@ -1,0 +1,144 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <h4 class="card-title"> Candidates Table</h4>
+          <div class="form-group ">
+            <select class="form-select" (change)="changedCriteria($event.target.value)">
+              <option selected value="all">All Candidates</option>
+              <option value="active">Active Candidates</option>
+              <option value="inactive">Inactive Candidates</option>
+              <option value="archive">Archive Candidates</option>
+            </select>
+          </div>
+          <button type="button" (click)="exportDetails()" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-spreadsheet-fill" viewBox="0 0 16 16">
+            <path d="M12 0H4a2 2 0 0 0-2 2v4h12V2a2 2 0 0 0-2-2zm2 7h-4v2h4V7zm0 3h-4v2h4v-2zm0 3h-4v3h2a2 2 0 0 0 2-2v-1zm-5 3v-3H6v3h3zm-4 0v-3H2v1a2 2 0 0 0 2 2h1zm-3-4h3v-2H2v2zm0-3h3V7H2v2zm4 0V7h3v2H6zm0 1h3v2H6v-2z"/>
+          </svg>Export </button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th class="text-center">
+                  Id
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Mobile
+                </th>
+                <th class="text-center">
+                  Payment Amount
+                </th>
+                <th class="text-center">
+                  Payment Status
+                </th>
+                <th class="text-center">
+                  Update Status
+                </th>
+                <th class="text-center">
+                  View  Profile
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of studentList">
+                  <td class="text-center">
+                    {{student?.id}}
+                  </td>
+                  <td>
+                  {{student?.name}}
+                  </td>
+                  <td>
+                   {{student?.email}}
+                  </td>
+                  <td>
+                   {{student.mobile}}
+                  </td>
+                  <td class="text-center">
+               {{student?.paymentAmount }} Rs
+                  </td>
+                  <td  class="text-center">{{student.paymentStatus}}
+                    <span class="badge badge-primary text-primary p-2">Done</span>
+                  <!-- <span *ngIf="student.paymentStatus=='pending'" class="badge badge-warning p-2">Pending</span> -->
+                  </td>
+                  <td class="text-center">
+                    <svg (click)=" openDialog(student)" xmlns="http://www.w3.org/2000/svg" width="20"  height="20" fill="currentColor" class="bi bi-pencil-fill cursor-pointer" viewBox="0 0 16 16">
+                      <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                    </svg>
+                  </td>
+                  <td  class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Payment Status </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body w-100">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <form class="w-50" >
+                <div class="form-group ">
+                  <select class="form-select" (change)="changedStatus($event.target.value)">
+                    <option disabled selected value="">-- Select Payment Status--</option>
+                    <option [disabled]="currentCustomer?.paymentStatus=='active'" value="active">Active</option>
+                    <option [disabled]="currentCustomer?.paymentStatus=='inactive'" value="inactive">Inactive</option>
+                    <option [disabled]="currentCustomer?.paymentStatus=='archive'" value="archive">Archive</option>
+                  </select>
+                </div>
+                <div class="form-group row col-12 w-100">
+                  <button
+
+
+                    type="button"
+                    class="btn btn-primary btn-block fa-lg gradient-custom-2"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
